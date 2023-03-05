@@ -1,6 +1,11 @@
-﻿using TgBot;
+﻿
+using Telegram.Bot;
+using TgBot;
+using TgBot.Handlers;
 
-using (var context = new TgBotContext())
-{
-    Console.WriteLine("in context");
-}
+var client = new TelegramBotClient(Constants.Token);
+var updateHandler = new UpdateHandler();
+var me = await client.GetMeAsync();
+client.StartReceiving(updateHandler);
+Console.WriteLine($"Start listening for @{me.Username}");
+Console.ReadLine();

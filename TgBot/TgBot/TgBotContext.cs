@@ -1,14 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TgBot.Entities;
 
 namespace TgBot
 {
     public class TgBotContext : DbContext
     {
+        public virtual DbSet<User> Users { get; set; }
         public TgBotContext()
         {
 
@@ -17,7 +14,7 @@ namespace TgBot
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-TKHDORE;Database=ItEducationBot;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-TKHDORE;Database=ItEducationBot;TrustServerCertificate=True;Trusted_Connection=True;");
             }
         }
     }
