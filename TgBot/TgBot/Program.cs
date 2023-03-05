@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using TgBot;
+
+using (var context = new TgBotContext())
+{
+    Console.WriteLine("in context");
+}
