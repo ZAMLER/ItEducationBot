@@ -6,3 +6,4 @@ LastName NVARCHAR(255),
 LanguageCode NVARCHAR(255),
 ChatId BIGINT
 );
+
