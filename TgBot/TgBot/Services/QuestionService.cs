@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TgBot.DTO;
+using TgBot.Entities;
 
 namespace TgBot.Services
 {
@@ -25,6 +26,17 @@ namespace TgBot.Services
                 questionInfo.Answers = question.Answers.Select(item => item.Name).ToList();
                 questionInfo.RightAnswer = question.Answers.Select((item,index)=>new {item.Id,index}).Where(item=>item.Id == question.RightAnswer).Select(item => item.index).First();
                 return questionInfo;
+            }
+        }
+        public async Task<long> CreateQuestion(string name)
+        {
+            using(var context = new TgBotContext())
+            {
+                var question = new Question();
+                question.Name = name;
+                context.Questions.Add(question);
+                await context.SaveChangesAsync();
+                return question.Id;
             }
         }
     }

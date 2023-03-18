@@ -31,11 +31,30 @@ namespace TgBot.Handlers
             {
                 case UpdateType.Message :
                    await CheckUserInDB(update);
+                    await CheckStates(botClient, update);
                     await CheckCommands(botClient,update);
                     break;
 
             }
                 
+        }
+        public async Task CheckStates(ITelegramBotClient botClient, Update update)
+        {
+            var state = await _userService.GetUserStateById(update.Message.From.Id);
+            switch (state)
+            {
+                case State.AddQuestion:
+                  var questionId = await _questionService.CreateQuestion(update.Message.Text);
+                    await _userService.ChangeUserStateById(update.Message.From.Id, State.AddAnswer);
+                    await _userService.ChangeUserStateDataById(update.Message.From.Id, questionId.ToString());
+                    await botClient.SendTextMessageAsync(update.Message.Chat.Id, "Введіть відповіді або вихід");
+                    break;
+                case State.AddAnswer:
+                    break;
+                case State.ChooseRightAnswer:
+                    break;
+
+            }
         }
 
         private async Task CheckCommands(ITelegramBotClient botClient, Update update)
