@@ -2,6 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
+using Telegram.Bot.Requests;
 using TgBot.Entities;
 using TgBot.Enums;
 
@@ -29,10 +30,44 @@ namespace TgBot.Services
             using (var context = new TgBotContext())
             {
                 var user = await context.Users.FirstOrDefaultAsync(item => item.Id == id);
+                if (user == null)
+                {
+                    throw new ArgumentNullException(nameof(user));
+                }
                 user.State = (int)state;
                 await context.SaveChangesAsync();
                 
                 
+            }
+        }
+        public async Task<State> GetUserStateById(long id)
+        { 
+            using(var context = new TgBotContext())
+            {
+              var user = await context.Users.FirstOrDefaultAsync(item => item.Id == id);
+                if(user == null)
+                {
+                    throw new ArgumentNullException(nameof(user));
+                }
+                return (State)user.State;
+
+
+            }
+            
+        }
+        public async Task ChangeUserStateDataById(long id, string stateData)
+        {
+            using (var context = new TgBotContext())
+            {
+                var user = await context.Users.FirstOrDefaultAsync(item => item.Id == id);
+                if (user == null)
+                {
+                    throw new ArgumentNullException(nameof(user));
+                }
+                user.StateData = stateData;
+                await context.SaveChangesAsync();
+
+
             }
         }
     }
