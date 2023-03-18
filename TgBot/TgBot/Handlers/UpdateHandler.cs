@@ -4,6 +4,7 @@ using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using TgBot.Enums;
 using TgBot.Services;
 using MyUser = TgBot.Entities.User;
 
@@ -30,20 +31,27 @@ namespace TgBot.Handlers
             {
                 case UpdateType.Message :
                    await CheckUserInDB(update);
-                    await CheckQuestion(botClient,update);
+                    await CheckCommands(botClient,update);
                     break;
 
             }
                 
         }
 
-        private async Task CheckQuestion(ITelegramBotClient botClient, Update update)
+        private async Task CheckCommands(ITelegramBotClient botClient, Update update)
         {
-            if(update.Message.Text == "Вчитись")
+            switch (update.Message.Text)
             {
-                var questionInfo = await _questionService.GetQuestionInfo();
-                await botClient.SendPollAsync(update.Message.Chat.Id, questionInfo.Question,questionInfo.Answers,false,PollType.Quiz,false,questionInfo.RightAnswer);
+                case "Вчитись":
+                    var questionInfo = await _questionService.GetQuestionInfo();
+                    await botClient.SendPollAsync(update.Message.Chat.Id, questionInfo.Question, questionInfo.Answers, false, PollType.Quiz, false, questionInfo.RightAnswer);
+                    break;
+                case "Додати питання" :
+                    await _userService.ChangeUserStateById(update.Message.From.Id, State.AddQuestion);
+                    await botClient.SendTextMessageAsync(update.Message.Chat.Id, "Вводьте ваше питання");
+                    break;
             }
+            
         }
 
         private async Task CheckUserInDB(Update update)

@@ -1,7 +1,9 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using TgBot.Entities;
+using TgBot.Enums;
 
 namespace TgBot.Services
 {
@@ -22,6 +24,16 @@ namespace TgBot.Services
                 await context.SaveChangesAsync();
             }
         }
-
+        public async Task ChangeUserStateById(long id, State state)
+        {
+            using (var context = new TgBotContext())
+            {
+                var user = await context.Users.FirstOrDefaultAsync(item => item.Id == id);
+                user.State = (int)state;
+                await context.SaveChangesAsync();
+                
+                
+            }
+        }
     }
 }
