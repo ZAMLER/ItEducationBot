@@ -20,7 +20,7 @@ namespace TgBot.Services
                 var questionId = questionIds[index];
                 var question = await context.Questions.SingleAsync(item => item.Id == questionId);
                 context.Entry(question).Collection(item => item.Answers).Load();
-                иvar questionInfo = new QuestionInfo();
+                var questionInfo = new QuestionInfo();
                 questionInfo.Question = question.Name;
                 questionInfo.Answers = question.Answers.Select(item => item.Name).ToList();
                 questionInfo.RightAnswer = question.Answers.Select((item,index)=>new {item.Id,index}).Where(item=>item.Id == question.RightAnswer).Select(item => item.index).First();
