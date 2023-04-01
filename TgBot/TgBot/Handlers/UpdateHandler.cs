@@ -1,9 +1,11 @@
 ﻿
 
+using System.Text;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using TgBot.Entities;
 using TgBot.Enums;
 using TgBot.Services;
 using MyUser = TgBot.Entities.User;
@@ -40,7 +42,7 @@ namespace TgBot.Handlers
         }
         public async Task CheckStates(ITelegramBotClient botClient, Update update)
         {
-            var state = await _userService.GetUserStateById(update.Message.From.Id);
+             var state = await _userService.GetUserStateById(update.Message.From.Id);
             switch (state)
             {
                 case State.AddQuestion:
@@ -50,8 +52,41 @@ namespace TgBot.Handlers
                     await botClient.SendTextMessageAsync(update.Message.Chat.Id, "Введіть відповіді або вихід");
                     break;
                 case State.AddAnswer:
+                    if (update.Message.Text == "Вихід")
+                    {
+                        var builder = new StringBuilder();
+                        await _userService.ChangeUserStateById(update.Message.From.Id, State.ChooseRightAnswer);
+                        builder.AppendLine("Оберіть правильну відповідь");
+                        var question = await _userService.GetUserStateDataById(update.Message.From.Id);
+                        var questionInfo = await _questionService.GetQuestionInfoById(long.Parse(question));
+                        for (int i = 0; i < questionInfo.Answers.Count; i++)
+                        {
+                            string? answer = questionInfo.Answers[i];
+                            builder.AppendLine($"{i+1} : {answer}");
+                        }
+                        await botClient.SendTextMessageAsync(update.Message.Chat.Id, builder.ToString());
+                    }
+                    else
+                    {
+                        var question = await _userService.GetUserStateDataById(update.Message.From.Id);
+                        await _questionService.CreateAnswer(int.Parse(question), update.Message.Text);
+                        await botClient.SendTextMessageAsync(update.Message.Chat.Id, "Введіть відповіді або вихід");
+                    }
                     break;
                 case State.ChooseRightAnswer:
+                    var qId = await _userService.GetUserStateDataById(update.Message.From.Id);
+                    var parsedQId = long.Parse(qId);
+                    var answers = await _questionService.GetAnswersByQuestionId(parsedQId);
+                    if(!int.TryParse(update.Message.Text,out var index))
+                    {
+                        return;
+                    }
+                    var answerr = answers[index - 1];
+                    await _questionService.UpdateRightAnswerById(parsedQId, answerr.Id);
+               
+                    await _userService.ChangeUserStateById(update.Message.From.Id, State.None);
+                    await _userService.ChangeUserStateDataById(update.Message.From.Id, null);
+                    await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"Ви обрали правильну відповідь : {answerr.Name}");
                     break;
 
             }
