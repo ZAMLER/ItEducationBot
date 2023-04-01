@@ -55,6 +55,20 @@ namespace TgBot.Services
             }
             
         }
+        public async Task<string> GetUserStateDataById(long id)
+        {
+            using (var context = new TgBotContext())
+            {
+                var user = await context.Users.FirstOrDefaultAsync(item => item.Id == id);
+                if (user == null)
+                {
+                    throw new ArgumentNullException(nameof(user));
+                }
+                return user.StateData;
+
+
+            }
+        }
         public async Task ChangeUserStateDataById(long id, string stateData)
         {
             using (var context = new TgBotContext())
