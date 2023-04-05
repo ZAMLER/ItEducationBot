@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgBot", "TgBot\TgBot.csproj", "{29B925D6-BDFC-4902-B283-8CBB44367CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgBot", "TgBot\TgBot.csproj", "{29B925D6-BDFC-4902-B283-8CBB44367CA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgBotServer", "TgBotServer\TgBotServer.csproj", "{1AA4DA50-6990-4E5A-953B-8E5794282759}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{29B925D6-BDFC-4902-B283-8CBB44367CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29B925D6-BDFC-4902-B283-8CBB44367CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29B925D6-BDFC-4902-B283-8CBB44367CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA4DA50-6990-4E5A-953B-8E5794282759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA4DA50-6990-4E5A-953B-8E5794282759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA4DA50-6990-4E5A-953B-8E5794282759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA4DA50-6990-4E5A-953B-8E5794282759}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

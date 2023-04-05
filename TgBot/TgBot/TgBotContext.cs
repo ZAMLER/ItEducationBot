@@ -16,7 +16,7 @@ namespace TgBot
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-TKHDORE;Database=ItEducationBot;TrustServerCertificate=True;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=SQL8005.site4now.net;Initial Catalog=db_a973a3_zamler001;User Id=db_a973a3_zamler001_admin;Password=thestar3");
             }
         }
     }
