@@ -19,7 +19,7 @@ namespace TgBot.Services
             {
                 var random = new Random();
                 var questionIds = await context.Questions.Select(item => item.Id).ToListAsync();
-                var index = random.Next(questionIds.Count);
+                var index = random.Next(questionIds.Count);  
                 questionId = questionIds[index];
             }
             return await GetQuestionInfoById(questionId);
@@ -33,7 +33,7 @@ namespace TgBot.Services
                 context.Entry(question).Collection(item => item.Answers).Load();
                 var questionInfo = new QuestionInfo();
                 questionInfo.Question = question.Name;
-                questionInfo.Answers = question.Answers.OrderBy(item => item.Id).Select(item => item.Name).ToList();
+                questionInfo.Answers = question.Answers.OrderBy(item => item.Id).Select(item => item.Name.Substring(0, item.Name.Length > 100 ? 100 : item.Name.Length)).ToList();
                 questionInfo.RightAnswer = question.Answers
                     .Select((item, index) => new { item.Id, index })
                     .Where(item => item.Id == question.RightAnswer)
