@@ -17,6 +17,7 @@ namespace TgBotServer.Controllers
             var client = new TelegramBotClient(Constants.Token);
             var updateHandler = new UpdateHandler();
             var me = await client.GetMeAsync();
+            cancellationTokenSource = new CancellationTokenSource();
             client.StartReceiving(updateHandler,cancellationToken : cancellationTokenSource.Token);
             Console.WriteLine($"Start listening for @{me.Username}");
         }
