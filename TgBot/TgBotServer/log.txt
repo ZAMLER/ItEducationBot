@@ -1,0 +1,5 @@
+Message: 123123
+Start listening for @EducationInItBot
+Update: Message
+User.State: None
+Message: Вчитись

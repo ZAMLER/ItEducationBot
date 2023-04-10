@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot;
 using TgBot;
 using TgBot.Handlers;
+using TgBot.Helpers;
 
 namespace TgBotServer.Controllers
 {
@@ -19,7 +20,7 @@ namespace TgBotServer.Controllers
             var me = await client.GetMeAsync();
             cancellationTokenSource = new CancellationTokenSource();
             client.StartReceiving(updateHandler,cancellationToken : cancellationTokenSource.Token);
-            Console.WriteLine($"Start listening for @{me.Username}");
+            LoggerHelper.WriteLine($"Start listening for @{me.Username}");
         }
         [HttpGet("stop")]
         public void Stop() 

@@ -7,6 +7,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using TgBot.Entities;
 using TgBot.Enums;
+using TgBot.Helpers;
 using TgBot.Services;
 using MyUser = TgBot.Entities.User;
 
@@ -24,11 +25,12 @@ namespace TgBot.Handlers
 
         public async Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
-            Console.WriteLine(exception.Message);
+            LoggerHelper.WriteLine(exception.Message);
         }
 
         public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
+            LoggerHelper.WriteLine($"Update: {update.Type}");
             switch(update.Type)
             {
                 case UpdateType.Message :
@@ -41,7 +43,8 @@ namespace TgBot.Handlers
         }
         public async Task CheckStates(ITelegramBotClient botClient, Update update)
         {
-             var state = await _userService.GetUserStateById(update.Message.From.Id);
+            var state = await _userService.GetUserStateById(update.Message.From.Id);
+            LoggerHelper.WriteLine($"User : {update.Message.From.FirstName}; State: {state}");
             switch (state)
             {
                 case State.AddQuestion:
@@ -60,6 +63,7 @@ namespace TgBot.Handlers
         }
         private async Task CheckCommands(ITelegramBotClient botClient, Update update)
         {
+            LoggerHelper.WriteLine($"Message: {update.Message.Text}");
             switch (update.Message.Text)
             {
                 case "Вчитись":
