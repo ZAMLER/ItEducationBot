@@ -25,3 +25,94 @@ User : Misha; State: ChooseRightAnswer
 Update: Message
 User : Misha; State: None
 Message: Вчитись
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Value cannot be null. (Parameter 'source')
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Value cannot be null. (Parameter 'source')
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Update: Message
+User : Jene4ka; State: None
+Message: Вчитись
+Update: PollAnswer
+Update: PollAnswer
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Update: Message
+User : Jene4ka; State: None
+Message: Вчитись
+Update: PollAnswer
+Update: PollAnswer
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Start listening for @EducationInItBot
+Update: Message
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+User : Misha; State: None
+Message: Вчитись
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Conflict: terminated by other getUpdates request; make sure that only one bot instance is running

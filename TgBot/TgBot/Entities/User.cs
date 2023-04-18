@@ -12,5 +12,6 @@ namespace TgBot.Entities
         public string? LanguageCode { get; set; }
         public int State { get; set; }
         public string? StateData { get; set; }
+        public List<QuestionUser> QuestionUsers { get; set; } = new List<QuestionUser>();
     }
 }

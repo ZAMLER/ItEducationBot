@@ -8,6 +8,7 @@ namespace TgBot
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Answer> Answers { get; set; }
+        public virtual DbSet<QuestionUser> QuestionUser { get; set; }
         public TgBotContext()
         {
 

@@ -12,5 +12,6 @@ namespace TgBot.Entities
         public string Name { get; set; }
         public long? RightAnswer { get; set; }
         public List<Answer> Answers { get; set; } = new List<Answer>();
+        public List<QuestionUser> QuestionUsers { get; set; } = new List<QuestionUser>();
     }
 }

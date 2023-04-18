@@ -12,13 +12,27 @@ namespace TgBot.Services
 {
     public class QuestionService
     {
-        public async Task<QuestionInfo> GetQuestionInfo()
+        public async Task<QuestionInfo> GetQuestionInfo(long id)
         {
             var random = new Random();
             long questionId = 0;
             using (var context = new TgBotContext())
             {
-                var questionIds = await context.Questions.Select(item => item.Id).ToListAsync();
+                var questions = await context.Questions.Include(item => item.QuestionUsers).ToListAsync();
+                var minCount = questions.Select(item => 
+                {
+                    var questionUser = item.QuestionUsers.FirstOrDefault(x => x.UserId == id);
+                    if(questionUser == null)
+                    {
+                        return 0;
+                    }
+                    return questionUser.Count;
+                }).Min();
+                var questionIds = await context.Questions
+                    .Where(item => 
+                    item.QuestionUsers.Any(x => x.UserId == id && x.Count == minCount)
+                    || (minCount == 0 && !item.QuestionUsers.Any(x => x.UserId == id)))
+                    .Select(item => item.Id).ToListAsync();
                 var index = random.Next(questionIds.Count);  
                 questionId = questionIds[index];
             }
@@ -27,6 +41,7 @@ namespace TgBot.Services
             var temp = questionInfo.Answers[questionInfo.RightAnswer];
             questionInfo.Answers[questionInfo.RightAnswer] = questionInfo.Answers[newIndex];
             questionInfo.Answers[newIndex] = temp;
+            questionInfo.RightAnswer = newIndex;
             return questionInfo;
         }
 
@@ -37,6 +52,7 @@ namespace TgBot.Services
                 var question = await context.Questions.SingleAsync(item => item.Id == questionId);
                 context.Entry(question).Collection(item => item.Answers).Load();
                 var questionInfo = new QuestionInfo();
+                questionInfo.QuestionId = questionId;   
                 questionInfo.Question = question.Name;
                 questionInfo.Answers = question.Answers.OrderBy(item => item.Id).Select(item => item.Name.Substring(0, item.Name.Length > 100 ? 100 : item.Name.Length)).ToList();
                 questionInfo.RightAnswer = question.Answers

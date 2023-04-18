@@ -137,7 +137,8 @@ namespace TgBot.Handlers
 
         private async Task LearnCommand(ITelegramBotClient botClient, Update update)
         {
-            var questionInfo = await _questionService.GetQuestionInfo();
+            var questionInfo = await _questionService.GetQuestionInfo(update.Message.From.Id);
+            await _userService.AddQuestionUser(questionInfo.QuestionId, update.Message.From.Id);
             await botClient.SendPollAsync(update.Message.Chat.Id, questionInfo.Question, questionInfo.Answers, false, PollType.Quiz, false, questionInfo.RightAnswer);
         }
 
