@@ -3,3 +3,25 @@ Start listening for @EducationInItBot
 Update: Message
 User.State: None
 Message: Вчитись
+Start listening for @EducationInItBot
+Update: Message
+User : Misha; State: None
+Message: Вчитись
+Update: Message
+User : Misha; State: None
+Message: Додати питання
+Update: Message
+User : Misha; State: AddQuestion
+Update: Message
+User : Misha; State: AddAnswer
+Update: Message
+User : Misha; State: AddAnswer
+Update: Message
+User : Misha; State: AddAnswer
+Update: Message
+User : Misha; State: AddAnswer
+Update: Message
+User : Misha; State: ChooseRightAnswer
+Update: Message
+User : Misha; State: None
+Message: Вчитись

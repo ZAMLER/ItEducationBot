@@ -14,15 +14,20 @@ namespace TgBot.Services
     {
         public async Task<QuestionInfo> GetQuestionInfo()
         {
+            var random = new Random();
             long questionId = 0;
             using (var context = new TgBotContext())
             {
-                var random = new Random();
                 var questionIds = await context.Questions.Select(item => item.Id).ToListAsync();
                 var index = random.Next(questionIds.Count);  
                 questionId = questionIds[index];
             }
-            return await GetQuestionInfoById(questionId);
+            var questionInfo = await GetQuestionInfoById(questionId);
+            var newIndex = random.Next(questionInfo.Answers.Count);
+            var temp = questionInfo.Answers[questionInfo.RightAnswer];
+            questionInfo.Answers[questionInfo.RightAnswer] = questionInfo.Answers[newIndex];
+            questionInfo.Answers[newIndex] = temp;
+            return questionInfo;
         }
 
         public async Task<QuestionInfo> GetQuestionInfoById(long questionId)
